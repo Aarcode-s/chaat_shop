@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Order vibrant Indian street food from Chaat Corner.">
+  <title>Chaat Corner | Fresh street food</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Chaat Corner home"><span class="brand-mark">CC</span><span>chaat<br><b>corner</b></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#menu">Menu</a><a href="#story">Our story</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-button" id="cart-button" type="button" aria-label="Open your cart">Cart <span id="cart-count">0</span></button>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <p class="eyebrow">Street food, made with heart</p>
+        <h1>A little <em>crunch</em><br>goes a long way.</h1>
+        <p class="hero-lede">Big flavours, bright chutneys, and the kind of comfort that feels like home. Made fresh when you order.</p>
+        <a class="button button-dark" href="#menu">Explore the menu <span>&rarr;</span></a>
+        <div class="hero-note"><span class="spark">+</span><span><b>Always fresh</b><br>Prepared to order, never pre-packed.</span></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a bowl of chaat">
+        <div class="sun"></div><div class="doodle doodle-one">. . .</div><div class="doodle doodle-two">~ ~</div>
+        <div class="food-bowl"><div class="topping topping-one"></div><div class="topping topping-two"></div><div class="topping topping-three"></div><div class="leaf leaf-one"></div><div class="leaf leaf-two"></div></div>
+        <div class="bowl-shadow"></div>
+      </div>
+    </section>
+
+    <section class="ticker"><div class="ticker-inner">BOLD &nbsp;·&nbsp; BRIGHT &nbsp;·&nbsp; FULL OF FLAVOUR &nbsp;·&nbsp; BOLD &nbsp;·&nbsp; BRIGHT &nbsp;·&nbsp; FULL OF FLAVOUR</div></section>
+
+    <section class="menu-section shell" id="menu">
+      <div class="section-heading"><div><p class="eyebrow">The good stuff</p><h2>Pick your favourites.</h2></div><p class="muted">Small plates, big personality.<br>All made to order.</p></div>
+      <div class="category-tabs" role="tablist" aria-label="Menu categories"><button class="active" data-filter="all">All</button><button data-filter="chaat">Chaat</button><button data-filter="snacks">Snacks</button><button data-filter="drinks">Drinks</button></div>
+      <div class="menu-grid" id="menu-grid"><div class="loading">Loading the menu...</div></div>
+    </section>
+
+    <section class="admin-shell shell" id="admin" hidden>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Operations</p>
+          <h2>Admin control panel.</h2>
+        </div>
+      </div>
+
+      <div class="admin-panel" id="admin-panel">
+        <div class="admin-card admin-login-card" id="admin-login-card">
+          <h3>Secure access</h3>
+          <form id="admin-login-form" class="admin-login-form">
+            <label>Username
+              <input name="username" type="text" autocomplete="username" required placeholder="admin">
+            </label>
+            <label>Password
+              <input name="password" type="password" autocomplete="current-password" required placeholder="Your password">
+            </label>
+            <button class="button button-dark" type="submit">Sign in</button>
+          </form>
+          <p class="admin-status" id="admin-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="admin-card admin-authenticated" id="admin-authenticated" hidden>
+          <div class="admin-toolbar">
+            <div>
+              <p class="eyebrow">Logged in</p>
+              <h3 id="admin-username-display">Admin</h3>
+            </div>
+            <button class="button button-secondary" id="admin-logout" type="button">Log out</button>
+          </div>
+
+          <form id="admin-menu-form" class="admin-menu-form">
+            <input type="hidden" id="menu-item-id" name="menu_item_id" value="">
+            <div class="admin-form-grid">
+              <label>Name
+                <input id="menu-name" name="name" type="text" required maxlength="100" placeholder="Paneer tikka chaat">
+              </label>
+              <label>Price
+                <input id="menu-price" name="price" type="number" min="1" step="0.01" required placeholder="120.00">
+              </label>
+              <label>Category
+                <select id="menu-category" name="category" required>
+                  <option value="chaat">Chaat</option>
+                  <option value="snacks" selected>Snacks</option>
+                  <option value="drinks">Drinks</option>
+                </select>
+              </label>
+            </div>
+            <label>Description
+              <textarea id="menu-description" name="description" rows="3" maxlength="255" placeholder="Crisp, spicy, and fresh..."></textarea>
+            </label>
+            <label class="checkbox-line">
+              <input id="menu-available" name="is_available" type="checkbox" checked>
+              Available for sale
+            </label>
+            <div class="admin-form-actions">
+              <button class="button button-dark" type="submit" id="save-menu-item">Save item</button>
+              <button class="button button-secondary" type="button" id="cancel-menu-edit">Cancel</button>
+            </div>
+          </form>
+
+          <div class="admin-list-header">
+            <h4>Current menu</h4>
+            <button class="button button-secondary small" id="refresh-admin-menu" type="button">Refresh</button>
+          </div>
+          <div id="admin-menu-list" class="admin-menu-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story shell" id="story">
+      <div class="story-card"><p class="eyebrow">Made for sharing</p><h2>Food that starts conversations.</h2><p>Chaat Corner is our love letter to the street-side stalls, family kitchens, and late-night walks that taught us that the best meals are the ones you remember.</p><a class="text-link" href="#contact">Say hello <span>&rarr;</span></a></div>
+      <div class="story-stat"><strong>100%</strong><span>fresh ingredients<br>and good vibes</span></div>
+    </section>
+
+    <section class="contact shell" id="contact">
+      <div><p class="eyebrow">Have a question?</p><h2>Let's talk chutney.</h2><p class="muted">Whether you have feedback, a catering idea, or just want to say hi, we would love to hear from you.</p></div>
+      <form id="contact-form" class="contact-form"><label>Name<input name="name" required maxlength="100" placeholder="Your name"></label><label>Email<input name="email" type="email" required placeholder="you@example.com"></label><label class="full">Message<textarea name="message" required rows="4" maxlength="1000" placeholder="Tell us what is on your mind..."></textarea></label><button class="button button-dark" type="submit">Send message <span>&rarr;</span></button><p class="form-status" id="contact-status" role="status"></p></form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span class="brand-name">chaat corner</span><span>Fresh food. Good mood.</span><button class="cart-button" id="admin-portal-toggle" type="button" aria-expanded="false">Open admin</button><a href="#top">Back to top &uarr;</a></footer>
+
+  <aside class="cart-drawer" id="cart-drawer" aria-label="Your cart" aria-hidden="true"><div class="drawer-head"><h2>Your order</h2><button class="close-button" id="close-cart" type="button" aria-label="Close cart">&times;</button></div><div id="cart-items" class="cart-items"><p class="empty-cart">Your cart is waiting for something delicious.</p></div><div class="cart-footer"><div class="total-row"><span>Total</span><strong id="cart-total">Rs 0.00</strong></div><form id="checkout-form"><label>Name<input name="customer_name" required maxlength="100" placeholder="Your name"></label><label>Phone<input name="customer_phone" required minlength="10" maxlength="20" placeholder="10-digit phone number"></label><button class="button button-accent" type="submit" id="checkout-button">Place order <span>&rarr;</span></button></form><p class="form-status" id="checkout-status" role="status"></p></div></aside><div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast" role="status"></div>
+  <!-- Set this to the deployed API URL before app.js, for example:
+  <script>window.GCHY_API_URL = "https://your-api.onrender.com";</script>
+  -->
+  <script src="app.js"></script>
+</body>
+</html>
